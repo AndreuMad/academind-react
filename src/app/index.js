@@ -1,33 +1,20 @@
 import React from 'react';
 import { render } from 'react-dom';
+import {Router, Route, browserHistory} from 'react-router';
 
-import { Header } from './components/Header';
+import { Root } from './components/Root';
 import { Home } from './components/Home';
+import { User } from './components/User';
 
 class App extends React.Component {
 
     render() {
-        let person = {
-            name: 'Anna',
-            initialAge: 25,
-            hobbies: ['sport', 'art', 'music']
-        };
 
         return (
-            <div className="container">
-                <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
-                        <Header/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-xs-10 col-xs-offset-1">
-                        <Home person={person}>
-                            <p>Child element of Home</p>
-                        </Home>
-                    </div>
-                </div>
-            </div>
+            <Router history={browserHistory}>
+                <Route path={'user'} component={User} />
+                <Route path={'home'} component={Home} />
+            </Router>
         );
     }
 }
